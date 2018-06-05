@@ -115,6 +115,7 @@ $(RBOOT_BUILD_BASE)/rboot-stage2a.elf: $(RBOOT_BUILD_BASE)/rboot-stage2a.o
 $(RBOOT_BUILD_BASE)/rboot-hex2a.h: $(RBOOT_BUILD_BASE)/rboot-stage2a.elf
 	@echo "E2 $@"
 	$(Q) $(ESPTOOL2) -quiet -header $< $@ .text
+	$(Q) sed -i -e 's/uint8/uint8_t/g' -e 's/uint32/uint32_t/g' $@
 
 $(RBOOT_BUILD_BASE)/rboot.o: rboot.c rboot-private.h rboot.h $(RBOOT_BUILD_BASE)/rboot-hex2a.h
 	@echo "CC $<"
