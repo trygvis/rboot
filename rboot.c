@@ -504,7 +504,7 @@ uint32_t NOINLINE find_image(void) {
 
 	// check we have a good rom
 	while (runAddr == 0) {
-		ets_printf("Rom %d at %x is bad.\r\n", romToBoot, romconf->roms[romToBoot]);
+		ets_printf("Rom %d at 0x%x is bad.\r\n", romToBoot, romconf->roms[romToBoot]);
 		// for normal mode try each previous rom
 		// until we find a good one or run out
 		updateConfig = 1;
@@ -543,7 +543,7 @@ uint32_t NOINLINE find_image(void) {
 	system_rtc_mem(RBOOT_RTC_ADDR, &rtc, sizeof(rboot_rtc_data), RBOOT_RTC_WRITE);
 #endif
 
-	ets_printf("Booting rom %d at %x, run addr %x.\r\n", romToBoot, romconf->roms[romToBoot], runAddr);
+	ets_printf("Booting rom %d at 0x%x, run addr 0x%x.\r\n", romToBoot, romconf->roms[romToBoot], runAddr);
 	// copy the loader to top of iram
 	ets_memcpy((void*)_text_addr, _text_data, _text_len);
 	// return address to load from
